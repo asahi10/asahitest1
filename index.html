@@ -47,9 +47,20 @@ const questions = [
 let current;
 
 function nextQuestion() {
-  document.getElementById("answer").style.display = "none";
+  const area = document.getElementById("answer");
+  area.style.display = "none";
+  area.innerHTML = "";
+
   current = questions[Math.floor(Math.random() * questions.length)];
   document.getElementById("question").textContent = current.text;
+
+  const img = document.getElementById("qimage");
+  if (current.image) {
+    img.src = current.image;
+    img.style.display = "block";
+  } else {
+    img.style.display = "none";
+  }
 }
 
 function showAnswer() {
