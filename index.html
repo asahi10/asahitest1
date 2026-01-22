@@ -56,6 +56,8 @@ function showAnswer() {
   const q = current;
   const area = document.getElementById("answer");
 
+  area.style.display = "block";
+
   if (q.answerImage) {
     area.innerHTML = `<img src="${q.answerImage}" style="max-width:100%;">`;
   } else {
