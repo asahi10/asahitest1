@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>テスト勉強</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    img {
+      max-width: 100%;
+      margin-top: 10px;
+    }
+    button {
+      font-size: 18px;
+      padding: 10px 16px;
+      margin: 8px;
+    }
+  </style>
+</head>
+<body>
 
+<h2 id="question">問題</h2>
+<img id="qimage" style="display:none;">
+<p id="answer" style="display:none; font-weight:bold;"></p>
+
+<button onclick="showAnswer()">答えを見る</button>
+<button onclick="nextQuestion()">次の問題</button>
+
+<script>
+const questions = [
+  {
+    text: "この部品の名前は？",
+    image: "",
+    answer: "コンデンサ"
+  },
+  {
+    text: "Ohmの法則は？",
+    image: "",
+    answer: "V = IR"
+  }
+];
+
+let current;
+
+function nextQuestion() {
+  document.getElementById("answer").style.display = "none";
+  current = questions[Math.floor(Math.random() * questions.length)];
+  document.getElementById("question").textContent = current.text;
+}
+
+function showAnswer() {
+  document.getElementById("answer").textContent = current.answer;
+  document.getElementById("answer").style.display = "block";
+}
+
+nextQuestion();
+</script>
+
+</body>
+</html>
