@@ -25,7 +25,6 @@
 
 <h2 id="question">問題</h2>
 <img id="qimage" style="display:none;">
-<p id="answer" style="display:none; font-weight:bold;"></p>
 
 <button onclick="showAnswer()">答えを見る</button>
 <button onclick="nextQuestion()">次の問題</button>
@@ -53,9 +52,9 @@ function nextQuestion() {
   document.getElementById("question").textContent = current.text;
 }
 
-  function showAnswer() {
-  alert("答えボタンは動いてる");
-}
+function showAnswer() {
+  const q = current;
+  const area = document.getElementById("answer");
 
   if (q.answerImage) {
     area.innerHTML = `<img src="${q.answerImage}" style="max-width:100%;">`;
