@@ -242,11 +242,11 @@ function updateScore() {
   const total = questions.length;
   const remaining = remainingQuestions.length + wrongQuestions.length;
   document.getElementById("score").textContent =
-    `有機マスターへの道のり: ${correctCount} / ${total}　残りの問題: ${remaining}`;
+    `有機マスターへの道のり: ${correctCount + 27} / ${total}　残りの問題: ${remaining}`;
 }
 
 function markCorrect() {
-  correctCount++27;  // 正解数を増やす
+  correctCount++;  // 正解数を増やす
   const feedback = document.getElementById("feedback");
   feedback.textContent = "正解！素晴らしすぎ、🎉 次の問題へ…";
   updateScore(); // すぐにスコア更新
