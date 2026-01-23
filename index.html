@@ -28,6 +28,8 @@
 
 <button onclick="showAnswer()">答えを見る</button>
 <button onclick="nextQuestion()">次の問題</button>
+<button onclick="markCorrect()">正解</button>
+<button onclick="markWrong()">不正解</button>
 <div id="answer"></div>
   
 <script>
@@ -44,9 +46,9 @@ const questions = [
   }
 ];
 
-let remainingQuestions = [];
-
-let current;
+let remainingQuestions = [...questions];
+let wrongQuestions = [];
+let current = null;
 
 function showAnswer() {
   const q = current;
@@ -60,20 +62,34 @@ function showAnswer() {
     area.textContent = q.answer;
   }
 }
-
-remainingQuestions = [...questions];
   
 function nextQuestion() {
   const area = document.getElementById("answer");
   area.style.display = "none";
   area.innerHTML = "";
 
+function markCorrect() {
+  // 正解 → 何もしない（もう出ない）
+  nextQuestion();
+}
+
+function markWrong() {
+  // 不正解 → 後でまた出す
+  wrongQuestions.push(current);
+  nextQuestion();
+}
+
   // もう問題が残ってない場合
   if (remainingQuestions.length === 0) {
     document.getElementById("question").textContent = "全部出し終わりました！🎉";
     document.getElementById("qimage").style.display = "none";
     return;
+  }else {
+    // 間違えた問題で第2ラウンド
+    remainingQuestions = [...wrongQuestions];
+    wrongQuestions = [];
   }
+}
 
   // ランダムに1問選ぶ
   const index = Math.floor(Math.random() * remainingQuestions.length);
