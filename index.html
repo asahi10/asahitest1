@@ -49,6 +49,7 @@ const questions = [
 let remainingQuestions = [...questions];
 let wrongQuestions = [];
 let current = null;
+let questionNumber = 0;  // 何問目かカウント
 
 function showAnswer() {
   const q = current;
@@ -64,6 +65,8 @@ function showAnswer() {
 }
   
 function nextQuestion() {
+  function nextQuestion() {
+  questionNumber++;  // 問題を出すたびにカウント
   const area = document.getElementById("answer");
   area.style.display = "none";
   area.innerHTML = "";
@@ -89,7 +92,7 @@ if (remainingQuestions.length === 0) {
   // ★ここで削除（もう二度と出ない）
   remainingQuestions.splice(index, 1);
 
-  document.getElementById("question").textContent = current.text;
+  document.getElementById("question").textContent = `第${questionNumber}問: ${current.text}`;
 
   const img = document.getElementById("qimage");
   if (current.image) {
