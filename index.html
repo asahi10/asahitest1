@@ -184,13 +184,6 @@ let current = null;
 let questionNumber = 0;  // 何問目かカウント
 let correctCount = 0; // 正解カウント用
 
-function updateScore() {
-  const total = questions.length;
-  const answered = questionNumber;
-  const remaining = remainingQuestions.length + wrongQuestions.length;
-  document.getElementById("score").textContent =
-    `正解した問題: ${answered - remaining} / ${total}　残りの問題: ${remaining}`;
-}
 
 function showAnswer() {
   const q = current;
@@ -245,10 +238,18 @@ if (remainingQuestions.length === 0) {
   }
 }
 
-  function markCorrect() {
+function updateScore() {
+  const total = questions.length;
+  const remaining = remainingQuestions.length + wrongQuestions.length;
+  document.getElementById("score").textContent =
+    `正解した問題: ${correctCount} / ${total}　残りの問題: ${remaining}`;
+}
+
+function markCorrect() {
+  correctCount++;  // 正解数を増やす
   const feedback = document.getElementById("feedback");
   feedback.textContent = "正解！素晴らしすぎ、🎉 次の問題へ…";
-  // 1秒後に次の問題
+  updateScore(); // すぐにスコア更新
   setTimeout(() => {
     feedback.textContent = "";
     nextQuestion();
@@ -259,7 +260,7 @@ function markWrong() {
   const feedback = document.getElementById("feedback");
   feedback.textContent = "残念、、！ 後で再挑戦してね😖😖…";
   wrongQuestions.push(current);
-  // 1秒後に次の問題
+  updateScore(); // スコア更新（正解数は増えない）
   setTimeout(() => {
     feedback.textContent = "";
     nextQuestion();
