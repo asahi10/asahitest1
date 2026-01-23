@@ -68,16 +68,6 @@ function nextQuestion() {
   area.style.display = "none";
   area.innerHTML = "";
 
-function markCorrect() {
-  // 正解 → 何もしない（もう出ない）
-  nextQuestion();
-}
-
-function markWrong() {
-  // 不正解 → 後でまた出す
-  wrongQuestions.push(current);
-  nextQuestion();
-}
 
   // もう問題が残ってない場合
   if (remainingQuestions.length === 0) {
@@ -106,6 +96,17 @@ function markWrong() {
   } else {
     img.style.display = "none";
   }
+}
+
+function markCorrect() {
+  // 正解 → 何もしない（もう出ない）
+  nextQuestion();
+}
+
+function markWrong() {
+  // 不正解 → 後でまた出す
+  wrongQuestions.push(current);
+  nextQuestion();
 }
 </script>
 
