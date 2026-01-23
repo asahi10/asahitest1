@@ -70,15 +70,17 @@ function nextQuestion() {
 
 
   // もう問題が残ってない場合
-  if (remainingQuestions.length === 0) {
-    document.getElementById("question").textContent = "全部出し終わりました！🎉";
+if (remainingQuestions.length === 0) {
+  if (wrongQuestions.length === 0) {
+    document.getElementById("question").textContent = "全部正解！🎉";
     document.getElementById("qimage").style.display = "none";
     return;
-  }else {
+  } else {
     // 間違えた問題で第2ラウンド
     remainingQuestions = [...wrongQuestions];
     wrongQuestions = [];
   }
+}
 
   // ランダムに1問選ぶ
   const index = Math.floor(Math.random() * remainingQuestions.length);
