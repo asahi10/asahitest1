@@ -45,13 +45,9 @@ const questions = [
 ];
 
 let remainingQuestions = [];
-let current;
 
 let current;
 
-function nextQuestion() {
-  const area = document.getElementById("answer");
-  area.style.display = "none";
   area.innerHTML = "";
 
   current = questions[Math.floor(Math.random() * questions.length)];
