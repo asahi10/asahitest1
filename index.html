@@ -235,7 +235,7 @@ if (remainingQuestions.length === 0) {
 
   function markCorrect() {
   const feedback = document.getElementById("feedback");
-  feedback.textContent = "正解！🎉 次の問題へ…";
+  feedback.textContent = "正解！素晴らしすぎ、🎉 次の問題へ…";
   // 1秒後に次の問題
   setTimeout(() => {
     feedback.textContent = "";
@@ -245,7 +245,7 @@ if (remainingQuestions.length === 0) {
 
 function markWrong() {
   const feedback = document.getElementById("feedback");
-  feedback.textContent = "残念！😢 後でまた出ます…";
+  feedback.textContent = "残念、、！ 後で再挑戦してね😖😖…";
   wrongQuestions.push(current);
   // 1秒後に次の問題
   setTimeout(() => {
