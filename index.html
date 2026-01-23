@@ -48,20 +48,6 @@ let remainingQuestions = [];
 
 let current;
 
-  area.innerHTML = "";
-
-  current = questions[Math.floor(Math.random() * questions.length)];
-  document.getElementById("question").textContent = current.text;
-
-  const img = document.getElementById("qimage");
-  if (current.image) {
-    img.src = current.image;
-    img.style.display = "block";
-  } else {
-    img.style.display = "none";
-  }
-}
-
 function showAnswer() {
   const q = current;
   const area = document.getElementById("answer");
