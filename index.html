@@ -29,7 +29,9 @@
 <button onclick="showAnswer()">答えを見る</button>
 <button onclick="markCorrect()">正解</button>
 <button onclick="markWrong()">不正解</button>
+
 <div id="answer"></div>
+<div id="feedback" style="margin-top:10px; font-weight:bold;"></div>
   
 <script>
 const questions = [
@@ -231,16 +233,27 @@ if (remainingQuestions.length === 0) {
   }
 }
 
-function markCorrect() {
-  // 正解 → 何もしない（もう出ない）
-  nextQuestion();
+  function markCorrect() {
+  const feedback = document.getElementById("feedback");
+  feedback.textContent = "正解！🎉 次の問題へ…";
+  // 1秒後に次の問題
+  setTimeout(() => {
+    feedback.textContent = "";
+    nextQuestion();
+  }, 1000);
 }
 
 function markWrong() {
-  // 不正解 → 後でまた出す
+  const feedback = document.getElementById("feedback");
+  feedback.textContent = "残念！😢 後でまた出ます…";
   wrongQuestions.push(current);
-  nextQuestion();
+  // 1秒後に次の問題
+  setTimeout(() => {
+    feedback.textContent = "";
+    nextQuestion();
+  }, 1000);
 }
+
   window.onload = nextQuestion;  // ページロード時に最初の問題を表示
 </script>
 
