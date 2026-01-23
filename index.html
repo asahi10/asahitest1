@@ -44,6 +44,9 @@ const questions = [
   }
 ];
 
+let remainingQuestions = [];
+let current;
+
 let current;
 
 function nextQuestion() {
@@ -76,7 +79,37 @@ function showAnswer() {
   }
 }
 
-nextQuestion();
+remainingQuestions = [...questions];
+  
+function nextQuestion() {
+  const area = document.getElementById("answer");
+  area.style.display = "none";
+  area.innerHTML = "";
+
+  // もう問題が残ってない場合
+  if (remainingQuestions.length === 0) {
+    document.getElementById("question").textContent = "全部出し終わりました！🎉";
+    document.getElementById("qimage").style.display = "none";
+    return;
+  }
+
+  // ランダムに1問選ぶ
+  const index = Math.floor(Math.random() * remainingQuestions.length);
+  current = remainingQuestions[index];
+
+  // ★ここで削除（もう二度と出ない）
+  remainingQuestions.splice(index, 1);
+
+  document.getElementById("question").textContent = current.text;
+
+  const img = document.getElementById("qimage");
+  if (current.image) {
+    img.src = current.image;
+    img.style.display = "block";
+  } else {
+    img.style.display = "none";
+  }
+}
 </script>
 
 </body>
